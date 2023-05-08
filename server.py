@@ -156,7 +156,10 @@ class Server(mafia_game_pb2_grpc.ServerServicer):
     async def KillPerson(self, request, context):
         room = self.rooms[request.room_id]
         accused_person = request.name
-        room.accused[accused_person] += 1
+        if accused_person in room.accused:
+            room.accused[accused_person] += 1
+        else:
+            room.accused[accused_person] = 1
         return mafia_game_pb2.EmptyResponse()
 
     async def CheckPerson(self, request, context):
