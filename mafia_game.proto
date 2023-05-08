@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+service Server {
+  rpc InstallName (NameRequest) returns (Reply) {}
+  rpc GetRoomId (EmptyRequest) returns (RoomResponse) {}
+  rpc GetStream (EmptyRequest) returns (stream Reply) {}
+  rpc StartTheGameRequest (EmptyRequest) returns (EmptyResponse) {}
+  rpc RoleAssignment (NameRequest) returns (Role) {}
+  rpc UsersInfo (NameRequest) returns (UsersInfoMessage) {}
+  rpc AccusePerson (AccuseRequest) returns (EmptyResponse) {}
+  rpc Exit (NameRequest) returns (EmptyResponse) {}
+  rpc KillPerson (NameRequest) returns (EmptyResponse) {}
+  rpc CheckPerson (NameRequest) returns (BoolReply) {}
+  rpc EndDayRequest (EmptyRequest) returns (Reply) {}
+  rpc EndNightRequest (EmptyRequest) returns (Reply) {}
+  rpc CleanAccusedRequest (EmptyRequest) returns (EmptyResponse) {}
+  rpc AnnounceMafia(AnnounceMafiaRequest) returns (EmptyResponse) {}
+  rpc CheckGameEnding (EmptyRequest) returns (BoolReply) {}
+  rpc GetVictims (NameRequest) returns (UsersInfoMessage) {}
+
+}
+
+message EmptyResponse {}
+message EmptyRequest {
+  int64 room_id = 1;
+}
+message RoomResponse {
+  int64 room_id = 1;
+}
+message AnnounceMafiaRequest {
+  bool permission = 1;
+  int64 room_id = 2;
+}
+message NameRequest {
+  string name = 1;
+  int64 room_id = 2;
+}
+message AccuseRequest {
+  string username = 1;
+  string name = 2;
+  int64 room_id = 3;
+}
+message Role {
+  string role = 1;
+}
+message UsersInfoMessage {
+  string names = 1;
+  string statuses = 2;
+}
+message Reply {
+    string message = 1;
+}
+message BoolReply {
+  string message = 1;
+  bool right = 2;
+}
