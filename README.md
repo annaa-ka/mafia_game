@@ -5,7 +5,7 @@
 Тут ничего криминальнего нет, просто устанавливаем все зависимости в виртуальной среде, чтобы не засорять место компьютера лишним
 ```
 python3 -m pip install virtualenv
-virtualenv venv
+python3 -m virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
