@@ -20,9 +20,19 @@ class Client:
     def get_room_id(self):
         return self.room_id
 
-    async def install_room_id(self):
-        response = await self.stub.GetRoomId(mafia_game_pb2.EmptyRequest(room_id=self.room_id))
-        self.room_id = response.room_id
+    async def install_room_id(self, room_validation):
+        if not room_validation:
+            response = await self.stub.GetRoomId(mafia_game_pb2.EmptyRequest(room_id=self.room_id))
+            self.room_id = response.room_id
+        else:
+            response_val = False
+            while not response_val:
+                room_id = int(input("Enter room_id: "))
+                self.room_id = room_id
+                response = await self.stub.GetRoomId(mafia_game_pb2.EmptyRequest(room_id=self.room_id))
+                response_val = response.validation
+                if not response_val:
+                    print("Room id is incorrect. Try agian")
 
     async def user_initializitaion(self, user_name, room_id):
         self.user_name = user_name
@@ -93,7 +103,7 @@ class Client:
                             menu_chosen_option = terminal_menu.show()
                             await self.stub.AccusePerson(mafia_game_pb2.AccuseRequest(username=self.user_name, name=alive_users[menu_chosen_option], room_id=self.room_id))
 
-                    response = await self.stub.EndNightRequest(mafia_game_pb2.EmptyRequest(room_id=self.room_id))
+                    response = await self.stub.EndDayRequest(mafia_game_pb2.EmptyRequest(room_id=self.room_id))
                     if response.message == self.user_name:
                         self.role = "ghost"
                     break
@@ -174,13 +184,12 @@ async def run():
     terminal_menu = TerminalMenu(options)
     menu_chosen_option = terminal_menu.show()
     if options[menu_chosen_option] == "No":
-        await client.install_room_id()
+        await client.install_room_id(False)
         room_id = client.get_room_id()
         print("Your room id is: ", room_id)
     else:
-        room_id = int(input("Enter room_id: "))
-        client.room_id = room_id
-        await client.install_room_id()
+        await client.install_room_id(True)
+        room_id = client.get_room_id()
 
     while True:
         name = input("Print your name: ")

@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10mafia_game.proto\"\x0f\n\rEmptyResponse\"\x1f\n\x0c\x45mptyRequest\x12\x0f\n\x07room_id\x18\x01 \x01(\x03\"\x1f\n\x0cRoomResponse\x12\x0f\n\x07room_id\x18\x01 \x01(\x03\";\n\x14\x41nnounceMafiaRequest\x12\x12\n\npermission\x18\x01 \x01(\x08\x12\x0f\n\x07room_id\x18\x02 \x01(\x03\",\n\x0bNameRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07room_id\x18\x02 \x01(\x03\"@\n\rAccuseRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07room_id\x18\x03 \x01(\x03\"\x14\n\x04Role\x12\x0c\n\x04role\x18\x01 \x01(\t\"3\n\x10UsersInfoMessage\x12\r\n\x05names\x18\x01 \x01(\t\x12\x10\n\x08statuses\x18\x02 \x01(\t\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t\"+\n\tBoolReply\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\r\n\x05right\x18\x02 \x01(\x08\x32\xf1\x05\n\x06Server\x12%\n\x0bInstallName\x12\x0c.NameRequest\x1a\x06.Reply\"\x00\x12+\n\tGetRoomId\x12\r.EmptyRequest\x1a\r.RoomResponse\"\x00\x12&\n\tGetStream\x12\r.EmptyRequest\x1a\x06.Reply\"\x00\x30\x01\x12\x36\n\x13StartTheGameRequest\x12\r.EmptyRequest\x1a\x0e.EmptyResponse\"\x00\x12\'\n\x0eRoleAssignment\x12\x0c.NameRequest\x1a\x05.Role\"\x00\x12.\n\tUsersInfo\x12\x0c.NameRequest\x1a\x11.UsersInfoMessage\"\x00\x12\x30\n\x0c\x41\x63\x63usePerson\x12\x0e.AccuseRequest\x1a\x0e.EmptyResponse\"\x00\x12&\n\x04\x45xit\x12\x0c.NameRequest\x1a\x0e.EmptyResponse\"\x00\x12,\n\nKillPerson\x12\x0c.NameRequest\x1a\x0e.EmptyResponse\"\x00\x12)\n\x0b\x43heckPerson\x12\x0c.NameRequest\x1a\n.BoolReply\"\x00\x12(\n\rEndDayRequest\x12\r.EmptyRequest\x1a\x06.Reply\"\x00\x12*\n\x0f\x45ndNightRequest\x12\r.EmptyRequest\x1a\x06.Reply\"\x00\x12\x36\n\x13\x43leanAccusedRequest\x12\r.EmptyRequest\x1a\x0e.EmptyResponse\"\x00\x12\x38\n\rAnnounceMafia\x12\x15.AnnounceMafiaRequest\x1a\x0e.EmptyResponse\"\x00\x12.\n\x0f\x43heckGameEnding\x12\r.EmptyRequest\x1a\n.BoolReply\"\x00\x12/\n\nGetVictims\x12\x0c.NameRequest\x1a\x11.UsersInfoMessage\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10mafia_game.proto\"\x0f\n\rEmptyResponse\"\x1f\n\x0c\x45mptyRequest\x12\x0f\n\x07room_id\x18\x01 \x01(\x03\"3\n\x0cRoomResponse\x12\x0f\n\x07room_id\x18\x01 \x01(\x03\x12\x12\n\nvalidation\x18\x02 \x01(\x08\";\n\x14\x41nnounceMafiaRequest\x12\x12\n\npermission\x18\x01 \x01(\x08\x12\x0f\n\x07room_id\x18\x02 \x01(\x03\",\n\x0bNameRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07room_id\x18\x02 \x01(\x03\"@\n\rAccuseRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07room_id\x18\x03 \x01(\x03\"\x14\n\x04Role\x12\x0c\n\x04role\x18\x01 \x01(\t\"3\n\x10UsersInfoMessage\x12\r\n\x05names\x18\x01 \x01(\t\x12\x10\n\x08statuses\x18\x02 \x01(\t\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t\"+\n\tBoolReply\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\r\n\x05right\x18\x02 \x01(\x08\x32\xf1\x05\n\x06Server\x12%\n\x0bInstallName\x12\x0c.NameRequest\x1a\x06.Reply\"\x00\x12+\n\tGetRoomId\x12\r.EmptyRequest\x1a\r.RoomResponse\"\x00\x12&\n\tGetStream\x12\r.EmptyRequest\x1a\x06.Reply\"\x00\x30\x01\x12\x36\n\x13StartTheGameRequest\x12\r.EmptyRequest\x1a\x0e.EmptyResponse\"\x00\x12\'\n\x0eRoleAssignment\x12\x0c.NameRequest\x1a\x05.Role\"\x00\x12.\n\tUsersInfo\x12\x0c.NameRequest\x1a\x11.UsersInfoMessage\"\x00\x12\x30\n\x0c\x41\x63\x63usePerson\x12\x0e.AccuseRequest\x1a\x0e.EmptyResponse\"\x00\x12&\n\x04\x45xit\x12\x0c.NameRequest\x1a\x0e.EmptyResponse\"\x00\x12,\n\nKillPerson\x12\x0c.NameRequest\x1a\x0e.EmptyResponse\"\x00\x12)\n\x0b\x43heckPerson\x12\x0c.NameRequest\x1a\n.BoolReply\"\x00\x12(\n\rEndDayRequest\x12\r.EmptyRequest\x1a\x06.Reply\"\x00\x12*\n\x0f\x45ndNightRequest\x12\r.EmptyRequest\x1a\x06.Reply\"\x00\x12\x36\n\x13\x43leanAccusedRequest\x12\r.EmptyRequest\x1a\x0e.EmptyResponse\"\x00\x12\x38\n\rAnnounceMafia\x12\x15.AnnounceMafiaRequest\x1a\x0e.EmptyResponse\"\x00\x12.\n\x0f\x43heckGameEnding\x12\r.EmptyRequest\x1a\n.BoolReply\"\x00\x12/\n\nGetVictims\x12\x0c.NameRequest\x1a\x11.UsersInfoMessage\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'mafia_game_pb2', globals())
@@ -25,21 +25,21 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _EMPTYREQUEST._serialized_start=37
   _EMPTYREQUEST._serialized_end=68
   _ROOMRESPONSE._serialized_start=70
-  _ROOMRESPONSE._serialized_end=101
-  _ANNOUNCEMAFIAREQUEST._serialized_start=103
-  _ANNOUNCEMAFIAREQUEST._serialized_end=162
-  _NAMEREQUEST._serialized_start=164
-  _NAMEREQUEST._serialized_end=208
-  _ACCUSEREQUEST._serialized_start=210
-  _ACCUSEREQUEST._serialized_end=274
-  _ROLE._serialized_start=276
-  _ROLE._serialized_end=296
-  _USERSINFOMESSAGE._serialized_start=298
-  _USERSINFOMESSAGE._serialized_end=349
-  _REPLY._serialized_start=351
-  _REPLY._serialized_end=375
-  _BOOLREPLY._serialized_start=377
-  _BOOLREPLY._serialized_end=420
-  _SERVER._serialized_start=423
-  _SERVER._serialized_end=1176
+  _ROOMRESPONSE._serialized_end=121
+  _ANNOUNCEMAFIAREQUEST._serialized_start=123
+  _ANNOUNCEMAFIAREQUEST._serialized_end=182
+  _NAMEREQUEST._serialized_start=184
+  _NAMEREQUEST._serialized_end=228
+  _ACCUSEREQUEST._serialized_start=230
+  _ACCUSEREQUEST._serialized_end=294
+  _ROLE._serialized_start=296
+  _ROLE._serialized_end=316
+  _USERSINFOMESSAGE._serialized_start=318
+  _USERSINFOMESSAGE._serialized_end=369
+  _REPLY._serialized_start=371
+  _REPLY._serialized_end=395
+  _BOOLREPLY._serialized_start=397
+  _BOOLREPLY._serialized_end=440
+  _SERVER._serialized_start=443
+  _SERVER._serialized_end=1196
 # @@protoc_insertion_point(module_scope)

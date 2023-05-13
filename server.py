@@ -62,13 +62,21 @@ class Server(mafia_game_pb2_grpc.ServerServicer):
     async def GetRoomId(self, request, context):
         self.room_mutex.acquire()
         room_id = request.room_id
+
+        # room validation
+        if room_id != 0 and room_id not in self.rooms:
+            self.room_mutex.release()
+            return mafia_game_pb2.RoomResponse(room_id=room_id, validation=False)
+
+        # room_id is correct, register person
         if request.room_id != 0:
             self.not_filled_rooms[room_id] += 1
             if self.not_filled_rooms[room_id] == NUMBER_OF_MEMBERS:
                 self.not_filled_rooms.pop(room_id, None)
             self.room_mutex.release()
-            return mafia_game_pb2.RoomResponse(room_id=room_id)
+            return mafia_game_pb2.RoomResponse(room_id=room_id, validation=True)
 
+        # person does not have a room, but there are people in not filled rooms
         if len(self.not_filled_rooms) != 0:
             room_id = random.choice(list(self.not_filled_rooms.keys()))
             self.not_filled_rooms[room_id] += 1
@@ -79,7 +87,7 @@ class Server(mafia_game_pb2_grpc.ServerServicer):
             self.room_ids.remove(room_id)
             self.not_filled_rooms[room_id] = 1
         self.room_mutex.release()
-        return mafia_game_pb2.RoomResponse(room_id=room_id)
+        return mafia_game_pb2.RoomResponse(room_id=room_id, validation=True)
 
     async def GetStream(self, request, context):
         i = 0
@@ -238,7 +246,7 @@ class Server(mafia_game_pb2_grpc.ServerServicer):
         room = self.rooms[request.room_id]
         room.anounce_waiting += 1
         room.announce |= request.permission
-        room.announce &= len(room.officer_mafia)
+        room.announce &= (len(room.officer_mafia) != 0)
         if room.anounce_waiting != NUMBER_OF_MEMBERS:
             async with room.announce_cv:
                 await room.announce_cv.wait()

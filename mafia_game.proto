@@ -26,6 +26,7 @@ message EmptyRequest {
 }
 message RoomResponse {
   int64 room_id = 1;
+  bool validation = 2;
 }
 message AnnounceMafiaRequest {
   bool permission = 1;
