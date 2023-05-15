@@ -4,11 +4,28 @@
 
 Тут ничего криминальнего нет, просто устанавливаем все зависимости в виртуальной среде, чтобы не засорять место компьютера лишним
 ```
-python3 -m pip install virtualenv
-python3 -m virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
+python3 -m pip install virtualenv && python3 -m virtualenv venv && source venv/bin/activate && pip install -r requirements.txt
 ```
+
+# Если нужно быстро проверить дз #
+
+ - Открываем 7 теминалов
+ - В первом вводим
+    ```
+    source venv/bin/activate && python3 server.py
+    ```
+
+- Во всех остальных вводим
+    ```
+    source venv/bin/activate && python3 client.py 1
+    ```
+ - Везде надо будет ввести имена игроков, при тестрировании я вводила циферки 1,2,3,4,5,6
+
+- При таком тестировании не будут предложены опции для выбора дейтсвия (Show users info, Accuse somebody, Kill Person, Check Person) все это будет делаться программой
+- Также нельзя будет потестить опцию, что офицер решает сам показать мацию или нет (по умолчанию он всегда покажет, если ночью угадал)
+
+
+# Если по красоте
 
 ## Выполните команду для запуска сервера в папке репозитория
 
